@@ -3,7 +3,7 @@ extends layout
 block content
   h2= Recipes 
 
-  include: ../routes/index 
+  include ../routes/index 
   - const meal = 'pizza';
   - const recipe = getRecipe(meal);
 
@@ -19,5 +19,15 @@ block content
     each step in recipe.instructions 
       li = step
 
-
-  
+  form(action='/recipe',method='post')
+    label(for='name-text') Recipe Name: 
+    input(type='text',id='name-text',name='name')
+    h4 Ingredients 
+    textarea(id='ingredients-text',name='ingredients',rows='4',cols='50')
+    button(id='add-ingredient',type='button') ADD
+    h4 Instructions
+    textarea(id='instructions-text',name='instructions',rows='4',cols='50')
+    button(id='add-instruction',type='button') ADD
+    h4 Open Camera 
+    input(type='file',id='image-input',name='images',accept='image/*',multiple)
+    button(id='submit',type='submit') SUBMIT
